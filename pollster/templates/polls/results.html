@@ -1,7 +1,21 @@
 {% extends 'base.html' %}
-{% block content %}
-<h1 class="mb-5 text-center">{{ question.question_text }}</h1>
 
+
+{% block content %}
+
+<div id="container" style="width: 75%;">
+    <canvas id="pie-chart"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+
+
+
+<h1 class="mb-5 text-center">{{ question.question_text }}</h1>
+<h1 class="mb-5 text-center">{{ data.pub_date }}</h1>
+
+<a class="btn btn-secondary" href="{% url 'polls:index' %}">Back To Polls</a>
+<a class="btn btn-dark" href="{% url 'polls:detail' question.id %}">Vote again?</a>
 <ul class="list-group mb-5">
     {% for choice in question.choice_set.all %}
     <li class="list-group-item">
@@ -11,6 +25,4 @@
     {% endfor %}
 </ul>
 
-<a class="btn btn-secondary" href="{% url 'polls:index' %}">Back To Polls</a>
-<a class="btn btn-dark" href="{% url 'polls:detail' question.id %}">Vote again?</a>
 {% endblock %}
